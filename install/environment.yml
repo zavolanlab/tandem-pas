@@ -1,0 +1,10 @@
+name: tandem_pas
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.7.4
+  - pip=20.0.2
+  - mamba
+  - pip:
+    - snakemake==6.5.5

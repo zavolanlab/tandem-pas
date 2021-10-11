@@ -1,0 +1,19 @@
+{
+    "__default__":
+    {
+	"queue":"6hours",
+	"time": "02:00:00",
+	"threads":"8",
+	"mem":"5G",
+	"name":"{rule}.{wildcards}",
+    "out":"{params.cluster_log}"
+    },
+    "filter_on_ambiguous_annotation":
+    {
+        "queue": "6hours",
+        "time": "06:00:00",
+        "threads": "8",
+        "mem": "20G"
+    }
+
+}
