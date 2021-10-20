@@ -381,7 +381,7 @@ foreach my $t ( keys %transcripts ) {
 
   # write to the log file each 5000 transcripts
   $n++;
-  printS DERR "." if ( $n % 5000 == 0 );
+  print STDERR "." if ( $n % 5000 == 0 );
 
 # if at least one exon contains one cluster, save the list of exons with their corresponding clusters
   if ( $n_PAS > 0 ) {
