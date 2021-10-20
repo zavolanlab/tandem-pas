@@ -5,4 +5,4 @@ snakemake \
 --configfile config.yaml \
 -np --dag \
 | dot -Tsvg \
-> dag.svg
+> images/dag.svg

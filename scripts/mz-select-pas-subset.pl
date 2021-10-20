@@ -137,6 +137,13 @@ while ( my $line = <$fh> ) {
     }
   }
   
+  # only process this entry if type matches what was given
+  # as argument
+  if ( $checktypes == 1 ) {
+    next if ($transcript_type eq '');
+    next if ( not defined $TYPES{$transcript_type} );
+  }
+
   if ( $F[8] =~ m/transcript_id\s+"([^"]+)";/ ) {
     $transcript_id = $1;
     $transcript_id =~ s/\.\d+$//;
@@ -150,12 +157,7 @@ while ( my $line = <$fh> ) {
     }
   }
 
-  # only process this entry if type matches what was given
-  # as argument
-  if ( $checktypes == 1 ) {
-    next if ($transcript_type eq '');
-    next if ( not defined $TYPES{$transcript_type} );
-  }
+
 
   #####
   # error handling
@@ -280,9 +282,8 @@ my %assignedCL = ();
 
 my %transcriptsCL = ();
 $n = 0;
-print STDERR "[INFO] ";
+#print STDERR "[INFO] ";
 foreach my $t ( keys %transcripts ) {
-
   my @PAS   = ();
   my $n_PAS = 0;
 
@@ -360,6 +361,7 @@ foreach my $t ( keys %transcripts ) {
 
     #cluster is only considered if it belongs to exactly one exon
     # this check seems superfluous, $helper is reinitialized for each transcript 
+
     if ( $#K == 0 ) {
       $n_PAS++;
 
@@ -369,8 +371,11 @@ foreach my $t ( keys %transcripts ) {
       push @{ $PAS[ $K[0] ] },
         [ $chr, $cluster->[0], $cluster->[1], $cluster->[2], $cluster->[3], $strand ];
     }
-    else {
-	print STDERR "Cluster " . $cluster->[2] . " is part of multiple exons \n";
+    #elsif (@K == 0) {
+	#print STDERR "Cluster " . $cluster->[2] . " is not included in transcript $t \n";
+    #}
+    elsif (@K != 0) {
+	print STDERR "Cluster " . $cluster->[2] . " overlaps with multiple exons of transcript $t \n";
     }
   }
 
@@ -389,6 +394,7 @@ foreach my $t ( keys %transcripts ) {
     #}
     #print "\n";
   }
+
 }
 
 print STDERR "\n[INFO] Clusters to transcript assignment done.\n";
