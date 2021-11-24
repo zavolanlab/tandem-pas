@@ -10,9 +10,9 @@ logdir: logs
 scriptsdir: scripts
 
 # annotations (files to be placed into dir specified as indir)
-polyasites: annotations/atlas.clusters.2.0.GRCh38.96.bed.gz
-atlas_version: 2.0 #For naming output tandem PAS file
-gtf: annotations/gencode.v38.annotation.chr_removed.gtf.gz
+polyasites: # e.g. annotations/atlas.clusters.2.0.GRCh38.96.bed.gz
+atlas_version: # e.g. 2.0 #For naming output tandem PAS file
+gtf: # e.g. annotations/gencode.v38.annotation.chr_removed.gtf.gz
 
 # directory for results
 outdir: results
@@ -38,7 +38,7 @@ biotype_values:
   - protein_coding
 
 # number of nucleotides by which each terminal exon is extended at the 3' end
-three_prime_offset: 100
+three_prime_offset: 0
 
 # locusExtension: up/down extension of transcript locus to catch reads that start/end beyond transcript boundaries
 locus_extension: 100
