@@ -46,7 +46,7 @@ rule all:
     input:
         tandem_pas_TE = expand(os.path.join(config["outdir"],
                 str(config["atlas_version"]) + ".tandem_pas.terminal_exons.{strandedness}.bed"),
-                strandedness = ["unstranded","stranded"]),
+                strandedness = config["strandedness"]),
 
     
 rule create_log_dir:
@@ -72,10 +72,8 @@ rule select_tandem_pas:
     """
     input:
         created_dirs = os.path.join(logs,"created_dirs.tmp"),
-        BED_pas_atlas = os.path.join(config["indir"],
-                config['polyasites']),
-        GTF_annotation = os.path.join(config["indir"],
-                config['gtf']),
+        BED_pas_atlas = config['polyasites'],
+        GTF_annotation = config['gtf'],
         SCRIPT_ = os.path.join(
             config['scriptsdir'],
             "mz-select-pas-subset.pl")
@@ -178,8 +176,7 @@ rule filter_on_ambiguous_annotation:
     input:
         TSV_tandem_pas_terminal_exons = os.path.join(config["outdir"],
                 str(config["atlas_version"]) + ".tandem_pas.terminal_exons.tsv"),
-        GTF_annotation = os.path.join(config["indir"],
-                config['gtf']),
+        GTF_annotation = config['gtf'],
         SCRIPT_ = os.path.join(
             config["scriptsdir"],
             "mz-remove-overlapping-genes_{strandedness}.pl")
