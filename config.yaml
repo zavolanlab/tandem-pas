@@ -9,17 +9,17 @@ logdir: logs
 # directory that contains the scripts
 scriptsdir: scripts
 
-# directory for poly(A) sites and gtf
-indir: annotations
-
 # annotations (files to be placed into dir specified as indir)
-polyasites: #atlas.clusters.2.0.GRCh38.96.bed.gz
-atlas_version: #2.0 For naming output tandem PAS file
-gtf: #gencode.v38.gtf.gz
+polyasites: # e.g. annotations/atlas.clusters.2.0.GRCh38.96.bed.gz
+atlas_version: # e.g. 2.0 #For naming output tandem PAS file
+gtf: # e.g. annotations/gencode.v38.annotation.chr_removed.gtf.gz
 
 # directory for results
 outdir: results
 
+# Caculate TPAS for stranded or unstranded data, or both?
+# specify as list of strings (e.g. ["unstranded", "stranded"])
+strandedness: ["stranded"]
 
 #-------------------------------------------------------------------------------
 # params for tandem pas creation
