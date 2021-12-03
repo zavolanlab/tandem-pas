@@ -5,4 +5,4 @@ snakemake \
 --printshellcmds \
 --use-conda \
 --cores 4 \
-&>> tpas.log
+&> tpas.log
