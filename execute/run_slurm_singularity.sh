@@ -14,8 +14,7 @@ snakemake \
 	--qos {cluster.queue} \
 	--time {cluster.time} \
 	-o {params.cluster_log} \
-	-p [PARTITION] \
 	--export=JOB_NAME={rule} \
 	--open-mode=append" \
 	--jobs 20 \
-&> tpas_hs21.log
+&> tpas.slurm.singu.log

@@ -83,7 +83,7 @@ awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' gencode.gtf > gencode.chr_r
 ``` 
 
 ### 7. Running the pipeline
-Go to the root folder of this repo and make sure you have the conda environment `tandem_pas` activated. For your convenience, the directory `execute` contains bash scripts that can be used to start local runs, using either singularity or conda, and a slurm cluster run, using singularity. In order for the latter to work, you will have to specify the partition to be used in `run_slurm_singularity.sh`.
+Go to the root folder of this repo and make sure you have the conda environment `tandem_pas` activated. For your convenience, the directory `execute` contains bash scripts that can be used to start local runs, using either singularity or conda, and a slurm cluster run, using singularity.
 
 [polyasite-atlas]: <https://polyasite.unibas.ch/atlas>
 [conda]: <https://docs.conda.io/projects/conda/en/latest/index.html>
