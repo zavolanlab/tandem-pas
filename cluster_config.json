@@ -12,7 +12,7 @@
     {
         "queue": "6hours",
         "time": "06:00:00",
-        "threads": "8",
+        "threads": "1",
         "mem": "20G"
     }
 
