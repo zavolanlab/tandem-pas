@@ -181,7 +181,7 @@ rule filter_on_ambiguous_annotation:
     params:
         INT_downstream_extend = config['downstream_extend'],
         cluster_log = os.path.join(cluster_logs,
-            str(config["atlas_version"]) + "filter_on_ambiguous_annotation.log"
+            str(config["atlas_version"]) + "filter_{strandedness}.log"
         )
 
     log:
