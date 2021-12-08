@@ -23,7 +23,7 @@ from snakemake.utils import makedirs
 ### Local rules
 ################################################################################
 
-localrules: all, create_log_dir
+localrules: all, create_log_dir, select_terminal_exon_pas
 
 logs = config["logdir"]
 cluster_logs = os.path.join(logs, "cluster_logs")
