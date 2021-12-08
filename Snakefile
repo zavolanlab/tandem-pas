@@ -13,18 +13,11 @@
 #   MODIFIED: 21-09-2021
 #   LICENSE: Apache_2.0
 #
-#  If used as subworkflow via 'include', don't provide config file!
-#  Configs are specified in config.yaml of main Snakefile!
 ##############################################################################
 
-configfile: "config.yaml"
-
-from snakemake.utils import makedirs
-#from snakemake.utils import listfiles
-
-#import sys
 import os
 import traceback
+from snakemake.utils import makedirs
 
 ################################################################################
 ### Local rules

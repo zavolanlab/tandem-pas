@@ -2,7 +2,7 @@
 
 snakemake \
 --use-conda \
---configfile config.yaml \
+--configfile configs/config.yaml \
 -np --dag \
 | dot -Tsvg \
 > images/dag.svg

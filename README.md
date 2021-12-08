@@ -68,7 +68,7 @@ conda activate tandem_pas
 
 
 ### 5. Configure the input parameters
-"config.yaml". This file contains all information about used parameter values, data locations, file names and so on. During a run, all steps of the pipeline will retrieve their paramter values from this file. It follows the yaml syntax (find more information about yaml and it's syntax [here](http://www.yaml.org/)) making it easy to read and edit. The main principles are:
+The file "configs/config.yaml" contains all information about used parameter values, data locations, file names and so on. During a run, all steps of the pipeline will retrieve their paramter values from this file. It follows the yaml syntax (find more information about yaml and it's syntax [here](http://www.yaml.org/)) making it easy to read and edit. The main principles are:
   - everything that comes after a `#` symbol is considered as comment and will not be interpreted
   - paramters are given as key-value pair, with `key` being the name and `value` the value of any paramter
 
@@ -76,7 +76,7 @@ conda activate tandem_pas
 Some entries require your editing while most of them you can leave unchanged. However, this config file contains all parameters used in the pipeline and the comments should give you the information about their meaning. If you need to change path names please ensure to **use relative instead of absolute path names**.
 
 ### 6. Annotations and poly(A) sites
-Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from [ensembl][ensembl]) for your organism and place them in the directory you specified as `indir` in the `config.yaml`. 
+Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from [ensembl][ensembl]) for your organism and specify their paths in the `config.yaml`. 
 > NOTE: the pipeline will only work if the poly(A) sites file and annotation gtf use the same chromosome naming scheme. For PolyASite 2.0 derived files, this means that ensembl annotations have to be used (lacking the leading "chr"). However, as gencode annotations are based on ensembl, you could possibly - **AT YOUR OWN RISK** - remove the "chr" from *gencode* annotations before running the pipeline with
 ```
 awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' gencode.gtf > gencode.chr_removed.gtf
