@@ -6,7 +6,7 @@
 # directory that contains the scripts
 scriptsdir: scripts
 
-# annotations
+# annotations (files can be zipped or unzipped)
 polyasites: # e.g. annotations/atlas.clusters.2.0.GRCh38.96.bed.gz
 atlas_version: # e.g. 2.0 #For naming output tandem PAS file
 gtf: # e.g. annotations/gencode.v38.annotation.chr_removed.gtf.gz
