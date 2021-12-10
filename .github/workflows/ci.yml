@@ -1,0 +1,41 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+
+  snakemake-dag:
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        shell: bash -l {0}
+    steps:
+
+      - name: Checkout tandem-pas repository
+        uses: actions/checkout@v2
+
+      - name: Setup miniconda & tandem-pas root env
+        uses: conda-incubator/setup-miniconda@v2
+        with:
+          python-version: 3.7.4
+          auto-update-conda: false
+          environment-file: install/environment.root.yml
+          activate-environment: tandem_pas
+          auto-activate-base: false
+
+      - name: Display all miniconda & env info
+        run: |
+          conda info -a
+          conda list
+
+      - name: Copy the test config file
+        run: yes | cp tests/integration/config.yaml configs/config.yaml
+
+      - name: Run test script for snakemake DAG
+        run: bash execute/run_dag.sh
