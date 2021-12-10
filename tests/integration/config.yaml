@@ -19,7 +19,7 @@ logdir: results/logs
 
 # Caculate TPAS for stranded or unstranded data, or both?
 # specify as list of strings (e.g. ["unstranded", "stranded"])
-strandedness: ["stranded"]
+strandedness: ["unstranded", "stranded"]
 
 #-------------------------------------------------------------------------------
 # params for tandem pas creation
