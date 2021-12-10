@@ -334,5 +334,4 @@ results*/
 *.log
 annotations/
 *nohup*
-test*/
 input*/

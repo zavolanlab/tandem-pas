@@ -1,0 +1,49 @@
+---
+#-------------------------------------------------------------------------------
+# general settings
+#-------------------------------------------------------------------------------
+
+# directory that contains the scripts
+scriptsdir: scripts
+
+# annotations (files can be zipped or unzipped)
+polyasites: tests/integration/atlas.clusters.2.0.GRCh38.96.chr21.bed # e.g. annotations/atlas.clusters.2.0.GRCh38.96.bed.gz
+atlas_version: 2.0 # e.g. 2.0 #For naming output tandem PAS file
+gtf: tests/integration/Homo_sapiens.GRCh38.87.chr21.gtf # e.g. annotations/gencode.v38.annotation.chr_removed.gtf.gz
+
+# directory for results
+outdir: results
+
+# directory for log files
+logdir: results/logs
+
+# Caculate TPAS for stranded or unstranded data, or both?
+# specify as list of strings (e.g. ["unstranded", "stranded"])
+strandedness: ["stranded"]
+
+#-------------------------------------------------------------------------------
+# params for tandem pas creation
+#-------------------------------------------------------------------------------
+# minimum support that a site in the atlas needs to be considered
+# This is bed column 5 of the atlas 
+# (version 1.0: number of supporting protocols, version 2.0: tpm)
+min_support: 0
+
+# filtering fields in the annotation file, adjust according to the gtf file used
+# ensembl: transcript_biotype, gencode: transcript_type
+biotype_key: transcript_biotype
+# If not filtering, comment the key 'biotype_values', else an error is raised
+biotype_values:
+  - lncRNA
+  - protein_coding
+
+# number of nucleotides by which each terminal exon is extended at the 3' end
+three_prime_offset: 0
+
+# locusExtension: up/down extension of transcript locus to catch reads that start/end beyond transcript boundaries
+locus_extension: 100
+
+# region downstream of terminal exon 3' ends that should not overlap with any
+# other annotated feature
+downstream_extend: 200
+...
