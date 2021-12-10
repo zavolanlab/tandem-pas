@@ -71,3 +71,10 @@ jobs:
 
       - name: Run test script
         run: bash execute/run_local_conda.sh
+
+      - name: Compare output files to what is expected
+        run: |
+          cmp results/2.0.tandem_pas.tsv tests/integratioin/2.0.tandem_pas.tsv
+          cmp results/2.0.tandem_pas.terminal_exons.tsv tests/integratioin/2.0.tandem_pas.terminal_exons.tsv
+          cmp results/2.0.tandem_pas.terminal_exons.stranded.tsv tests/integratioin/2.0.tandem_pas.terminal_exons.stranded.tsv
+          cmp results/2.0.tandem_pas.terminal_exons.unstranded.tsv tests/integratioin/2.0.tandem_pas.terminal_exons.unstranded.tsv
