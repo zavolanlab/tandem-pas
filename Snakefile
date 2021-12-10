@@ -13,24 +13,17 @@
 #   MODIFIED: 21-09-2021
 #   LICENSE: Apache_2.0
 #
-#  If used as subworkflow via 'include', don't provide config file!
-#  Configs are specified in config.yaml of main Snakefile!
 ##############################################################################
 
-configfile: "config.yaml"
-
-from snakemake.utils import makedirs
-#from snakemake.utils import listfiles
-
-#import sys
 import os
 import traceback
+from snakemake.utils import makedirs
 
 ################################################################################
 ### Local rules
 ################################################################################
 
-localrules: all, create_log_dir
+localrules: all, create_log_dir, select_terminal_exon_pas
 
 logs = config["logdir"]
 cluster_logs = os.path.join(logs, "cluster_logs")
@@ -188,7 +181,7 @@ rule filter_on_ambiguous_annotation:
     params:
         INT_downstream_extend = config['downstream_extend'],
         cluster_log = os.path.join(cluster_logs,
-            str(config["atlas_version"]) + "filter_on_ambiguous_annotation.log"
+            str(config["atlas_version"]) + "filter_{strandedness}.log"
         )
 
     log:

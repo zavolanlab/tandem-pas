@@ -67,23 +67,33 @@ conda activate tandem_pas
 ```
 
 
-### 5. Configure the input parameters
-"config.yaml". This file contains all information about used parameter values, data locations, file names and so on. During a run, all steps of the pipeline will retrieve their paramter values from this file. It follows the yaml syntax (find more information about yaml and it's syntax [here](http://www.yaml.org/)) making it easy to read and edit. The main principles are:
+## 5. Configure the input parameters
+The file "configs/config.yaml" contains all information about used parameter values, data locations, file names and so on. During a run, all steps of the pipeline will retrieve their paramter values from this file. It follows the yaml syntax (find more information about yaml and it's syntax [here](http://www.yaml.org/)) making it easy to read and edit. The main principles are:
   - everything that comes after a `#` symbol is considered as comment and will not be interpreted
   - paramters are given as key-value pair, with `key` being the name and `value` the value of any paramter
 
 
-Some entries require your editing while most of them you can leave unchanged. However, this config file contains all parameters used in the pipeline and the comments should give you the information about their meaning. If you need to change path names please ensure to **use relative instead of absolute path names**.
+Some entries require your editing (e.g. filepaths or whether you want a tandem PAS file for unstranded or stranded data) while most of them you can leave unchanged. This config file contains all parameters used in the pipeline and the comments should give you the information about their meaning. If you need to change path names please ensure to **use relative instead of absolute path names**.
 
-### 6. Annotations and poly(A) sites
-Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from [ensembl][ensembl]) for your organism and place them in the directory you specified as `indir` in the `config.yaml`. 
+## 6. Annotations and poly(A) sites
+Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from [ensembl][ensembl]) for your organism and specify their paths in the `config.yaml`. 
+
 > NOTE: the pipeline will only work if the poly(A) sites file and annotation gtf use the same chromosome naming scheme. For PolyASite 2.0 derived files, this means that ensembl annotations have to be used (lacking the leading "chr"). However, as gencode annotations are based on ensembl, you could possibly - **AT YOUR OWN RISK** - remove the "chr" from *gencode* annotations before running the pipeline with
 ```
-awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' gencode.gtf > gencode.chr_removed.gtf
+awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' GENCODE.gtf > GENCODE.CHR_REMOVED.gtf
 ``` 
+> The other way around, if you need *gencode* style annotations, you could add the leading "chr" to the PolyASite atlas file.   
+```
+# Example for mouse
+cat atlas.clusters.2.0.GRCm38.96.bed | sed -E 's/^([0-9]+|[XY])/chr\1/' | sed -E 's/^MT/chrM/' > atlas.clusters.2.0.GRCm38.96.mod.bed
+# Example for human
+sed -E 's/^([0-9]+|[XYM])/chr\1/' atlas.clusters.2.0.GRCh38.96.bed > atlas.clusters.2.0.GRCh38.96.wchr.bed
+```
+If you are using poly(A) site annotations from a different source than PolyASite, make sure to provide proper bed format and create a PolyASite-like ID for each site in column 4 (format: "chr:site:strand", where site is the representative site of the cluster (or the single nucleotide position of the single site)).
 
-### 7. Running the pipeline
-Go to the root folder of this repo and make sure you have the conda environment `tandem_pas` activated. For your convenience, the directory `execute` contains bash scripts that can be used to start local runs, using either singularity or conda, and a slurm cluster run, using singularity. In order for the latter to work, you will have to specify the partition to be used in `run_slurm_singularity.sh`.
+
+## 7. Running the pipeline
+Go to the root folder of this repo and make sure you have the conda environment `tandem_pas` activated. For your convenience, the directory `execute` contains bash scripts that can be used to start local runs, using either singularity or conda, and a slurm cluster run, using singularity.
 
 [polyasite-atlas]: <https://polyasite.unibas.ch/atlas>
 [conda]: <https://docs.conda.io/projects/conda/en/latest/index.html>
