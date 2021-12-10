@@ -85,6 +85,8 @@ Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from 
 ```
 awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' GENCODE.gtf > GENCODE.CHR_REMOVED.gtf
 ``` 
+> Please be mindful of the `biotype_key` key in the configuration file, which should be set according to the annotation type provided to the pipeline.
+
 > The other way around, if you need *gencode* style annotations, you could add the leading "chr" to the PolyASite atlas file.   
 ```
 # Example for mouse
