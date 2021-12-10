@@ -76,8 +76,8 @@ jobs:
         run: |
           cmp results/2.0.tandem_pas.tsv tests/integration/2.0.tandem_pas.tsv
           cmp results/2.0.tandem_pas.terminal_exons.tsv tests/integration/2.0.tandem_pas.terminal_exons.tsv
-          cmp results/2.0.tandem_pas.terminal_exons.stranded.tsv tests/integration/2.0.tandem_pas.terminal_exons.stranded.tsv
-          cmp results/2.0.tandem_pas.terminal_exons.unstranded.tsv tests/integration/2.0.tandem_pas.terminal_exons.unstranded.tsv
+          cmp results/2.0.tandem_pas.terminal_exons.stranded.bed tests/integration/2.0.tandem_pas.terminal_exons.stranded.bed
+          cmp results/2.0.tandem_pas.terminal_exons.unstranded.bed tests/integration/2.0.tandem_pas.terminal_exons.unstranded.bed
 
   integration-singularity:
     needs:
@@ -115,5 +115,5 @@ jobs:
         run: |
           cmp results/2.0.tandem_pas.tsv tests/integration/2.0.tandem_pas.tsv
           cmp results/2.0.tandem_pas.terminal_exons.tsv tests/integration/2.0.tandem_pas.terminal_exons.tsv
-          cmp results/2.0.tandem_pas.terminal_exons.stranded.tsv tests/integration/2.0.tandem_pas.terminal_exons.stranded.tsv
-          cmp results/2.0.tandem_pas.terminal_exons.unstranded.tsv tests/integration/2.0.tandem_pas.terminal_exons.unstranded.tsv
+          cmp results/2.0.tandem_pas.terminal_exons.stranded.bed tests/integration/2.0.tandem_pas.terminal_exons.stranded.bed
+          cmp results/2.0.tandem_pas.terminal_exons.unstranded.bed tests/integration/2.0.tandem_pas.terminal_exons.unstranded.bed
