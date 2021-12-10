@@ -39,3 +39,5 @@ jobs:
 
       - name: Run test script for snakemake DAG
         run: bash execute/run_dag.sh
+
+
