@@ -85,8 +85,6 @@ Download the [PolyASite atlas][polyasite-atlas] and gene annotations (e.g. from 
 ```
 awk -F'\t' -vOFS='\t' '{ gsub("chr","",$1) ; print}' GENCODE.gtf > GENCODE.CHR_REMOVED.gtf
 ``` 
-> Please be mindful of the `biotype_key` key in the configuration file, which should be set according to the annotation type provided to the pipeline.
-
 > The other way around, if you need *gencode* style annotations, you could add the leading "chr" to the PolyASite atlas file.   
 ```
 # Example for mouse
@@ -94,6 +92,8 @@ cat atlas.clusters.2.0.GRCm38.96.bed | sed -E 's/^([0-9]+|[XY])/chr\1/' | sed -E
 # Example for human
 sed -E 's/^([0-9]+|[XYM])/chr\1/' atlas.clusters.2.0.GRCh38.96.bed > atlas.clusters.2.0.GRCh38.96.wchr.bed
 ```
+> Please be mindful of the `biotype_key` key in the configuration file, which should be set according to the annotation type provided to the pipeline.
+
 If you are using poly(A) site annotations from a different source than PolyASite, make sure to provide proper bed format and create a PolyASite-like ID for each site in column 4 (format: "chr:site:strand", where site is the representative site of the cluster (or the single nucleotide position of the single site)).
 
 
