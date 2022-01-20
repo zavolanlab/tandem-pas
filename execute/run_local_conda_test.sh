@@ -5,3 +5,7 @@ snakemake \
 --printshellcmds \
 --use-conda \
 --cores 1 \
+&& \
+rm -rf results \
+&& \
+echo "Test completed successfully"
