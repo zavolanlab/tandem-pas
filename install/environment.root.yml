@@ -5,6 +5,7 @@ channels:
 dependencies:
   - python=3.7.4
   - pip=20.0.2
+  - graphviz=2.40.1
   - singularity=3.5.2
   - mamba
   - pip:
